@@ -1,0 +1,6 @@
+ /* Estilo para o menu lateral no modo colapsado (mobile) */
+@media (max-width: 991.98px) {
+    .offcanvas-start {
+        width: 250px;
+    }
+}

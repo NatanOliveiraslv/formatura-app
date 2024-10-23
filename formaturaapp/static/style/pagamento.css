@@ -1,0 +1,53 @@
+/* Configura a altura total da tela */
+.form-before-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 94vh;
+    background-color: #f8f9fa;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh; /* Ocupa quase toda a tela */
+}
+
+/* Define a área de campos do formulário */
+.form-fields {
+    flex-grow: 1; /* Faz os campos de entrada crescerem conforme o espaço disponível */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+/* Botão e campos de total no final */
+.form-bottom {
+    margin-top: auto; /* Empurra o conteúdo acima para cima */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os elementos */
+}
+
+/* Ajusta a distribuição dos itens de "Presente" e "Total" */
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Estilização adicional para telas maiores */
+@media (min-width: 768px) {
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,23 @@
+.form-before-container{
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+/* Estilo para os textos "(obrigatório)" e "(opcional)" */
+
+.form-label .required {
+    color: #ff00189c;
+    font-weight: bold;
+    font-size: 9px;
+}
+.form-label .optional {
+    color: #6c757d;
+    font-size: 9px;
+}

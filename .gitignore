@@ -1,0 +1,9 @@
+db.sqlite3
+formaturaapp/__pycache_/*
+apps/pagamento/__pycache_/*
+apps/pagamento/migrations/*
+apps/presenca/__pycache_/*
+apps/presenca/migrations/*
+apps/presentes/__pycache_/*
+apps/presentes/migrations/*
+media/*
