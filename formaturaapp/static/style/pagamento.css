@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
     min-height: 94vh;
-    background-color: #f8f9fa;
 }
 
 .form-container {
@@ -17,7 +16,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 90vh; /* Ocupa quase toda a tela */
 }
 
 /* Define a área de campos do formulário */

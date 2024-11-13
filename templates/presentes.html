@@ -84,9 +84,13 @@
       quantidade += valor
       if (quantidade < 1) quantidade = 1
       document.getElementById('quantidade').innerText = quantidade
-      // Atualiza o modalPreco com o valor total formatado
-      document.getElementById('modalPreco').innerText = formatarMoeda(preco * quantidade)
-      document.getElementById('totalPreco').value = total.toFixed(2);
+
+      // Calcula o total com base na quantidade e preço do presente
+      const total = preco * quantidade
+
+      // Atualiza o modalPreco e totalPreco com o valor total formatado
+      document.getElementById('modalPreco').innerText = formatarMoeda(total)
+      document.getElementById('totalPreco').value = total.toFixed(2)
     }
   </script>
 

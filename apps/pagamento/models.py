@@ -16,7 +16,9 @@ class Pagamentos(models.Model):
     value = models.FloatField('Valor', null=False, blank=False, default=0.0)
     message = models.TextField('Mensagem', null=True, blank=True)
     created_at = models.DateTimeField('Criado em', default=timezone.now)
-    # qrcode = models.FileField('qrcode', upload_to="qrcode_pix/", blank=True)
+    present_title = models.CharField("Presente comprado", max_length=100, blank=False, null=False, default='')
+    qr_code = models.FileField('qrcode', upload_to="qrcode_pix/", blank=True)
+    code_pix = models.CharField("Codigo pix", max_length=200, blank=False, null=False, default='')
     
     def __str__(self):
         return self.nome

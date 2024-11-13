@@ -1,9 +1,10 @@
 db.sqlite3
-formaturaapp/__pycache_/*
-apps/pagamento/__pycache_/*
+formaturaapp/__pycache__/*
+apps/pagamento/__pycache__/*
 apps/pagamento/migrations/*
-apps/presenca/__pycache_/*
+apps/presenca/__pycache__/*
 apps/presenca/migrations/*
-apps/presentes/__pycache_/*
+apps/presentes/__pycache__/*
 apps/presentes/migrations/*
 media/*
+.env

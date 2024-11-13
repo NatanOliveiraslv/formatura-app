@@ -8,14 +8,14 @@
 {% block content %}
   <div class="form-before-container">
     <div class="form-container">
-      <form method="post">
+      <form action="{% url 'processando_pagamento' %}" method="post">
         {% csrf_token %}
 
         <!-- Campo Presenteadores -->
         <div class="form-fields">
           <div class="mb-3">
-            <label for="Presenteadores" class="form-label">Quem está dando o presente?</label>
-            <input type="text" class="form-control" id="Presenteadores" name="Presenteadores" placeholder="Natan e Ivone" required />
+            <label for="presenteadores" class="form-label">Quem está dando o presente?</label>
+            <input type="text" class="form-control" id="presenteadores" name="presenteadores" placeholder="Natan e Ivone" required />
           </div>
 
           <!-- Campo E-mail -->
@@ -35,6 +35,7 @@
             <div>
               <label for="titulo" class="form-label">Presente:</label>
               <p id="titulo-presente">{{ presente.title }}</p>
+              <input type="hidden" name="titulo-presente" id="titulo-presente" value="{{ presente.title }}" />
             </div>
             <div>
               <label for="valor" class="form-label">Valor:</label>
@@ -47,13 +48,14 @@
             <div>
               <label for="total" class="form-label">Total:</label>
               <p id="valor-total">R$ {{ valor_total|floatformat:2 }}</p>
+              <input type="hidden" name="valor-total" id="valor-total" value="{{ valor_total }}" />
             </div>
           </div>
         </div>
 
         <!-- Botão Realizar Pagamento na parte de baixo -->
         <div class="form-bottom">
-          <button type="submit" class="btn btn-success w-100">Realizar pagamento</button>
+          <button type="submit" class="btn btn-success w-100">Realizar pagamento por pix <img src="{% static 'images/icone-pix.png' %}" width="25px" ></button>
         </div>
       </form>
     </div>

@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/404.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="astronaut">👨‍🚀</div>
+  <h1>404</h1>
+  <p>Oh não! Parece que você entrou em um buraco negro digital.</p>
+  <p>A página que você está procurando não foi encontrada.</p>
+  <a href="/" class="btn mt-4">Voltar à Terra</a>
+</div>
+
+{% endblock %}

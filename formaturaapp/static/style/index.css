@@ -1,6 +1,6 @@
 .bottom-btn {
-    position: fixed;
-    bottom: 20px;
+    position: absolute;
+    bottom: 9vh;
     width: 100%;
     display: flex;
     justify-content: center;

@@ -9,3 +9,6 @@ urlpatterns = [
     path('', include('presentes.urls')),
     path('', include('pagamento.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+#handler404 = "presenca.views.handler404"

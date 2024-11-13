@@ -1,11 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@300&display=swap');
+
 body {
     font-family: Arial, sans-serif;
+}
+.navbar{
+    height: 75px;
 }
 .navbar-toggler {
     border: none; /* Remove a borda */
 }
 a.navbar-brand {
     padding-left: 40px;
+}
+.navbar-light .navbar-brand {
+    font-family: "PT Serif", serif;
+    font-weight: 40;
+    font-style: normal;
+    font-size: 23px;
 }
 .sidebar {
     height: 100%;
@@ -21,10 +32,10 @@ a.navbar-brand {
     z-index: 999;
 }
 .sidebar a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 8px 30px 32px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+    font-size: 21px;
+    color: white;
     display: block;
     transition: 0.3s;
 }

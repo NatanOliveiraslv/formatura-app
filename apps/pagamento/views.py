@@ -7,7 +7,9 @@ from django.shortcuts import redirect, render
 from pagamento.payload_pix import Payload
 from django.utils import timezone
 import os
+from django.conf import settings
 import shutil
+from decouple import config
 
 def limpar_pasta_qrcode():
     # Verifica se a pasta existe
@@ -37,18 +39,50 @@ def pagamento(request):
     else:
         return redirect("presentes")
     
-def pagina_pix(request):
-    
-    nome = "Natan Oliveira da Silva"
-    chavepix = "60037382004"
-    valor = '1.00'
-    cidade = "Porto Alegre"
-    txtId = "Pix para teste"
-    fileNameQrcode = "teste"
-    
-    limpar_pasta_qrcode()
-    
-    pix = Payload(nome, chavepix, valor, cidade, txtId, fileNameQrcode)
-    return render(request, 'pagina_pix.html', {"pix": pix,
-                                               "fileNameQrcode": fileNameQrcode})
-    
+def processando_pagamento(request):
+    if request.method == "POST":
+        
+        nome = config("NOME")
+        chavepix = config("CHAVE_PIX")
+        valor = request.POST.get("valor-total")
+        cidade = config("CIDADE")
+        txtId = "Formatura Rian"
+        
+        #limpar_pasta_qrcode()
+        
+        pasta_qrcode = os.path.join(settings.MEDIA_ROOT, "qrcode_pix")
+        
+         # Certifique-se de que a pasta existe
+        if not os.path.exists(pasta_qrcode):
+            os.makedirs(pasta_qrcode)
+                
+        pagamento = Pagamentos.objects.create(
+            status = "PENDENTE",
+            nome = request.POST.get("presenteadores"),
+            email = request.POST.get("email"),
+            value = request.POST.get("valor-total"),
+            message = request.POST.get("mensagem"),
+            present_title = request.POST.get("titulo-presente"),
+            )
+        
+        pagamento.save()
+        
+        fileNameQrcode = f"{pagamento.id}.png"
+        
+        # Certifique-se de que a pasta existe
+        
+        pagamento.qr_code = os.path.join("pagamentos\\qrcode_pix", fileNameQrcode)
+        pagamento.save()
+        
+        pix = Payload(nome, chavepix, valor, cidade, txtId, fileNameQrcode)
+        pagamento.code_pix = pix
+        pagamento.save()
+        
+        return redirect('pagina_pix',pagamento.id)
+        
+    else:
+        return redirect('presenca')
+
+def pagina_pix(request, pagamento_id):
+    pagamento = get_object_or_404(Pagamentos, pk=pagamento_id)
+    return render(request, "pagina_pix.html", {"pagamento": pagamento})

@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     path('informacoes_pagamento', views.pagamento, name='pagamento'),
-    path('realizar_pagamento', views.pagina_pix, name='pagina_pix'),
+    path('processando_pagamento', views.processando_pagamento, name='processando_pagamento'),
+    path('realizar_pagamento/<int:pagamento_id>', views.pagina_pix, name='pagina_pix'),
 ]
