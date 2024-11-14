@@ -1,10 +1,6 @@
-db.sqlite3
-formaturaapp/__pycache__/*
-apps/pagamento/__pycache__/*
-apps/pagamento/migrations/*
-apps/presenca/__pycache__/*
-apps/presenca/migrations/*
-apps/presentes/__pycache__/*
-apps/presentes/migrations/*
-media/*
+*.sqlite3
+**/__pycache__/
+*.py[cod]
+**/migrations/
+media/
 .env
