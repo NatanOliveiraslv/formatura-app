@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style/pagamento.css' %}" />
+{% endblock %}
+
+{% block title %}
+    Pagamento | Formatura Rian
+{% endblock %}
+
+{% block content %}
+  <div class="form-before-container">
+    <div class="form-container">
+      <form action="{% url 'processando_pagamento' %}" method="post">
+        {% csrf_token %}
+
+        <!-- Campo Presenteadores -->
+        <div class="form-fields">
+          <div class="mb-3">
+            <label for="presenteadores" class="form-label">Quem está dando o presente?</label>
+            <input type="text" class="form-control" id="presenteadores" name="presenteadores" placeholder="Natan e Ivone" required />
+          </div>
+
+          <!-- Campo E-mail -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Qual seu e-mail?</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="joazinho@exemplo.com" required />
+          </div>
+
+          <!-- Campo Mensagem -->
+          <div class="mb-3">
+            <label for="mensagem" class="form-label">Quer deixar uma mensagem especial?</label>
+            <textarea class="form-control" id="mensagem" rows="8" name="mensagem" placeholder="Deixa uma mensagem"></textarea>
+          </div>
+
+          <!-- Campo Título do Presente e Valor -->
+          <div class="d-flex justify-content-between">
+            <div>
+              <label for="titulo" class="form-label">Presente:</label>
+              <p id="titulo-presente">{{ presente.title }}</p>
+              <input type="hidden" name="titulo-presente" id="titulo-presente" value="{{ presente.title }}" />
+            </div>
+            <div>
+              <label for="valor" class="form-label">Valor:</label>
+              <p id="valor-presente">R$ {{ presente.value|floatformat:2 }}</p>
+            </div>
+          </div>
+
+          <!-- Campo Total -->
+          <div class="d-flex justify-content-between">
+            <div>
+              <label for="total" class="form-label">Total:</label>
+              <p id="valor-total">R$ {{ valor_total|floatformat:2 }}</p>
+              <input type="hidden" name="valor-total" id="valor-total" value="{{ valor_total }}" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Botão Realizar Pagamento na parte de baixo -->
+        <div class="form-bottom">
+          <button type="submit" class="btn btn-success w-100">Realizar pagamento por pix <img src="{% static 'images/icone-pix.png' %}" width="25px" ></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

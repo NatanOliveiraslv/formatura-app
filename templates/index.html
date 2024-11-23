@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/index.css' %}">
+{% endblock %}
+
+{% block title %}
+    Pagina inicial | Formatura Rian
+{% endblock %}
+
+{% block content %}
+<div class="bottom-btn">
+    <a href="{% url 'presenca' %}">
+        <button class="btn btn-primary">Presença</button>
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+
+{% for message in messages %}
+
+{% if message.tags == 'error' %}
+
+<!-- Modal de alerta -->
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="alertModalLabel">Atenção!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- <img width="50%" src="{% static "images\erro.png" %}"> -->
+        <div class="modal-body">{{ message }}</div>
+    </div>
+    </div>
+</div>
+
+{% elif message.tags == 'success' %}
+
+<!-- Modal de alerta -->
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="alertModalLabel">Secesso!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       <!-- <img src="{% static "images\sucesso.png" %}"> -->
+        <div class="modal-body">{{ message }}</div>
+    </div>
+    </div>
+</div>
+
+{% endif %}
+
+<script>
+    // Exibir o modal de alerta automaticamente após carregar a página ou em um evento específico
+    document.addEventListener('DOMContentLoaded', function () {
+    var alertModal = new bootstrap.Modal(document.getElementById('alertModal'))
+    alertModal.show()
+    })
+</script>
+{% endfor %}

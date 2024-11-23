@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style/pagina_pix.css' %}" />
+{% endblock %}
+
+{% block title %}
+    Realizar pagamento | Formatura Rian
+{% endblock %}
+
+{% block content %}
+  <div class="form-before-container">
+    <div class="form-container">
+      <h2 class="text-center">Pagamento por Pix</h2>
+
+      <!-- Imagem do valor total da compra -->
+      <div class="total-value">
+        Total da compra: R$ <span id="totalValue">{{ pagamento.value|floatformat:2 }}</span>
+      </div>
+
+      <!-- QR Code do Pix -->
+      <div class="qr-code">
+        <img src="{{ pagamento.qr_code.url }}" alt="QR Code" class="img-fluid" />
+        <p class="mt-2">Scaneie o QR Code para pagar</p>
+      </div>
+
+      <!-- Campo para inserir código do Pix -->
+      <div class="form-group">
+        <label for="pixCode">Código do Pix:</label>
+        <input type="text" class="form-control" id="pixCode" value="{{ pagamento.code_pix }}" readonly />
+      </div>
+
+      <!-- Botão para copiar código -->
+      <button class="btn btn-primary copy-button" onclick="copyPixCode()">Copiar Código do Pix</button>
+    </div>
+  </div>
+
+  <script>
+    function copyPixCode() {
+      const pixCodeField = document.getElementById('pixCode')
+      pixCodeField.select()
+      pixCodeField.setSelectionRange(0, 99999)
+      document.execCommand('copy')
+      alert('Código do Pix copiado: ' + pixCodeField.value)
+    }
+  </script>
+{% endblock %}

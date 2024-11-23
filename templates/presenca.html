@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style/presenca.css' %}" />
+{% endblock %}
+
+{% block title %}
+    Confirmar presenca | Formatura Rian
+{% endblock %}
+
+{% block content %}
+  <div class="form-before-container">
+    <div class="form-container">
+      <form method="post">
+        {% csrf_token %}
+        <!-- Campo Nome -->
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome <sup><span class="required">(obrigatório)</span></sup></label>
+          <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" required />
+        </div>
+
+        <!-- Campo Sobrenome -->
+        <div class="mb-3">
+          <label for="sobrenome" class="form-label">Sobrenome <sup><span class="required">(obrigatório)</span></sup></label>
+          <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Digite seu sobrenome" required />
+        </div>
+
+        <!-- Campo E-mail (não obrigatório) -->
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail <sup><span class="optional">(opcional)</span></sup></label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" />
+        </div>
+
+        <!-- Campo Telefone (não obrigatório) -->
+        <div class="mb-3">
+          <label for="telefone" class="form-label">Telefone <sup><span class="optional">(opcional)</span></sup></label>
+          <input type="tel" class="form-control" id="telefone" name="telefone" maxlength="15" placeholder="Digite seu telefone" />
+        </div>
+
+        <!-- Botão Confirmar Presença -->
+        <button type="submit" class="btn btn-success w-100">Confirmar Presença</button>
+      </form>
+    </div>
+  </div>
+
+  {% include 'partials/alerta.html' %}
+  
+{% endblock %}

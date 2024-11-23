@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style/presentes.css' %}" />
+{% endblock %}
+
+{% block title %}
+    Lista de presentes | Formatura Rian
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Lista de Presentes</h2>
+    {% for presente in presentes %}
+      <div class="gift-card">
+        <img src="{{ presente.image.url }}" class="gift-image" alt="Presente 1" />
+
+        <h5 class="mt-3">{{ presente.title }}</h5>
+
+        <!-- Formata o valor do presente como moeda -->
+        <p id="valor-presente-{{ forloop.counter }}"></p>
+        <button class="btn btn-primary" onclick="abrirModal('{{ presente.title }}', '{{ presente.image.url }}', {{ presente.value }}, {{ presente.id }})">Comprar</button>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitulo"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <form id="formPagamento" action="{% url 'pagamento' %}" method="POST">
+          {% csrf_token %}
+          <div class="modal-body text-center">
+            <img src="" id="modalImagem" class="modal-img" alt="Imagem do Presente" />
+            <div class="quantity-controls mt-3">
+              <button class="btn btn-outline-secondary" id="diminuir" type="button" onclick="alterarQuantidade(-1)">-</button>
+              <span id="quantidade" class="mx-3">1</span>
+              <button class="btn btn-outline-secondary" id="aumentar" type="button" onclick="alterarQuantidade(1)">+</button>
+            </div>
+            <p class="mt-3">
+              Total: <span id="modalPreco"></span>
+            </p>
+
+            <!-- Campos ocultos para enviar ID e preço total -->
+            <input type="hidden" name="presente_id" id="presenteId" value="" />
+            <input type="hidden" name="total" id="totalPreco" value="" />
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Finalizar Compra</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let preco = 0
+    let quantidade = 1
+    
+    // Função para abrir o modal e exibir os dados do produto
+    function abrirModal(titulo, imagem, precoInicial, presenteId) {
+      document.getElementById('modalTitulo').innerText = titulo
+      document.getElementById('modalImagem').src = imagem
+    
+      // Definindo o ID do presente no campo oculto
+      document.getElementById('presenteId').value = presenteId
+    
+      // Converter o preço inicial para número e armazenar globalmente
+      preco = parseFloat(precoInicial)
+      quantidade = 1
+    
+      document.getElementById('quantidade').innerText = quantidade
+      document.getElementById('modalPreco').innerText = formatarMoeda(preco)
+      document.getElementById('totalPreco').value = preco.toFixed(2)
+
+      var modal = new bootstrap.Modal(document.getElementById('modalCompra'))
+      modal.show()
+    }
+    
+    // Função para alterar a quantidade e atualizar o preço
+    function alterarQuantidade(valor) {
+      quantidade += valor
+      if (quantidade < 1) quantidade = 1
+      document.getElementById('quantidade').innerText = quantidade
+
+      // Calcula o total com base na quantidade e preço do presente
+      const total = preco * quantidade
+
+      // Atualiza o modalPreco e totalPreco com o valor total formatado
+      document.getElementById('modalPreco').innerText = formatarMoeda(total)
+      document.getElementById('totalPreco').value = total.toFixed(2)
+    }
+  </script>
+
+  <script>
+    // Função para formatar número como moeda (formato brasileiro)
+    function formatarMoeda(valor) {
+        return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
+    }
+  
+    // Aplica a formatação a todos os valores de presente na página
+    {% for presente in presentes %}  
+      document.getElementById('valor-presente-{{ forloop.counter }}').innerText = formatarMoeda({{ presente.value }});
+    {% endfor %}
+  </script>
+{% endblock %}
