@@ -46,7 +46,7 @@ def processando_pagamento(request):
         chavepix = config("CHAVE_PIX")
         valor = request.POST.get("valor-total")
         cidade = config("CIDADE")
-        txtId = "Formatura Rian"
+        txtId = "Formatura"
         
         #limpar_pasta_qrcode()
         
