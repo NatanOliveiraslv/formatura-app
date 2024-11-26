@@ -4,7 +4,7 @@ from presentes.models import Presentes
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from pagamento.payload_pix import Payload
+from pagamento.payload_pix import *
 from django.utils import timezone
 import os
 from django.conf import settings
@@ -46,7 +46,7 @@ def processando_pagamento(request):
         chavepix = config("CHAVE_PIX")
         valor = request.POST.get("valor-total")
         cidade = config("CIDADE")
-        txtId = "Formatura Rian"
+        txtId = "Formatura"
         
         #limpar_pasta_qrcode()
         
@@ -74,6 +74,7 @@ def processando_pagamento(request):
         pagamento.qr_code = os.path.join("pagamentos\\qrcode_pix", fileNameQrcode)
         pagamento.save()
         
+        print(nome, chavepix, valor, cidade, txtId, fileNameQrcode)
         pix = Payload(nome, chavepix, valor, cidade, txtId, fileNameQrcode)
         pagamento.code_pix = pix
         pagamento.save()
