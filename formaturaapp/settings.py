@@ -88,7 +88,12 @@ DATABASES = {
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),    
-        'PORT': config('DB_PORT'),     
+        'PORT': config('DB_PORT'),
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'collation': 'utf8mb4_general_ci',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';"
+        },     
     }
 }
 
@@ -127,10 +132,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = '/home/formatura/www/static'
+STATIC_ROOT = '/home/formaturarian/www/static'
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '/home/formatura/www/media'
+MEDIA_ROOT = '/home/formaturarian/www/media'
 MEDIA_URL = '/media/'
 
 
