@@ -1,5 +1,6 @@
 {% load static %}
 
+<div id="overlay" class="overlay"></div> <!-- Overlay escuro -->
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <a href="{% url 'index' %}">Pagina inicial</a>
@@ -9,14 +10,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{% url 'index' %}">
-    <!-- <img src="{% static 'images/logo.png' %}" > -->
-                Formatura Rian
+    <img src="{% static 'images/logo.png' %}" class="logo-img" alt="Logo">
+    <div style="padding-left: 30px;">Formatura Rian</div>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="openNav()"> 
       <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto">
           <li class="nav-item">
               <a class="nav-link" href="{% url 'index' %}">Pagina inicial</a>
           </li>
@@ -30,18 +31,23 @@
   </div>
 </nav>
 
+
 <script>
   function openNav() {
-      document.getElementById("mySidebar").style.width = "300px";
-      document.getElementById("main").style.marginLeft = "250px";
-      document.getElementById("menuBtn").style.display = 'none';
+    document.getElementById("mySidebar").style.width = "300px";
+    document.getElementById("overlay").style.display = "block"; // Exibe o overlay escuro
+    // Não altere o #main, o conteúdo não será afetado
   }
 
   function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
-      document.getElementById("main").style.marginLeft= "0";
-      document.getElementById("menuBtn").style.display = 'block';
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("overlay").style.display = "none"; // Oculta o overlay
+    // Não altere o #main, o conteúdo não será afetado
   }
+
+  // Fechar o menu ao clicar fora do menu
+  document.getElementById("overlay").addEventListener("click", closeNav);
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

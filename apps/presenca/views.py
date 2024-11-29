@@ -3,13 +3,6 @@ from presenca.models import Convidados
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
-#Pagina inicial
-def index(request):
-    return render(request, 'index.html')
-
-def erro404(request):
-    return render(request, '404.html')
-
 def presenca(request):
     if request.method == "POST":
         
