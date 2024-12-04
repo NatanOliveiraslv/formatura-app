@@ -10,6 +10,10 @@
 {% endblock %}
 
 {% block content %}
+<div class="image-container">
+    <img style="width:1920px; height:1080px" loading="lazy" src="{% static 'images/imagem_index.webp' %}" alt="Background" class="image">
+</div>
+
 <div class="bottom-btn">
     <a href="{% url 'presenca' %}">
         <button class="btn btn-primary">Confirmar presença</button>
