@@ -10,13 +10,19 @@
 {% endblock %}
 
 {% block content %}
-<div class="image-container">
-    <img style="width:1920px; height:815px" loading="lazy" src="{% static 'images/imagem_index.webp' %}" alt="Background" class="image">
-</div>
+<div class="container-fluid vh-100 d-flex flex-column position-relative">
+    <img src="{% static 'images/imagem_index.webp' %}" alt="Imagem de Fundo" class="full-screen-image">
 
-<div class="bottom-btn">
-    <a href="{% url 'presenca' %}">
-        <button class="btn btn-primary">Confirmar presença</button>
-    </a>
+    <div class="content-wrapper">
+        <!-- Texto acima do botão -->
+        <div class="text">
+            <p class="custom-text-date">11.01.2024</p>
+            <p class="custom-text-title">Formatura Rian</p>
+        </div>
+        <!-- Botão fixado na parte inferior -->
+        <a href="{% url 'presenca' %}" class="btn btn-primary custom-button">PRESENÇA</a>
+    </div>
+    </div>
+
 </div>
 {% endblock %}
