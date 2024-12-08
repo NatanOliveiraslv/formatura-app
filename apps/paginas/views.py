@@ -9,3 +9,6 @@ def index(request):
 
 def erro404(request):
     return render(request, '404.html')
+
+def local(request):
+    return render(request, 'local.html')

@@ -28,6 +28,14 @@
       </svg>
     </span>
   </a>
+  <a class="menu-item" href="{% url 'local' %}">
+    <span class="menu-text">Local do evento</span>
+    <span class="menu-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="icon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </span>
+  </a>
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,7 +56,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'presentes' %}">Lista de presentes</a>
-        </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'local' %}">Local do evento</a>
+          </li>
       </ul>
   </div>
 </nav>
