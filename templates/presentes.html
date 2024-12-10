@@ -11,7 +11,18 @@
 
 {% block content %}
   <div class="container mt-5">
-    <h2 class="text-center mb-4">Lista de Presentes</h2>
+    <h2 class="text-center mb-4">Lista de presentes</h2>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrdenacao" data-bs-toggle="dropdown" aria-expanded="false">
+        Ordenar por
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownOrdenacao">
+        <li><a class="dropdown-item" href="?ordem=preco_asc">Menor valor</a></li>
+        <li><a class="dropdown-item" href="?ordem=preco_desc">Maior Valor</a></li>
+        <li><a class="dropdown-item" href="?ordem=nome_asc">A-Z</a></li>
+        <li><a class="dropdown-item" href="?ordem=nome_desc">Z-A</a></li>
+      </ul>
+    </div>
     {% for presente in presentes %}
       <div class="gift-card">
         <img src="{{ presente.image.url }}" class="gift-image" alt="Presente 1" />
